@@ -21,7 +21,7 @@ services:
       MYSQL_DATABASE: LinOTP2
       MYSQL_USER: linotp2
       MYSQL_PASSWORD: "1qaz2wsx"
-      MYSQL_HOST: 10.152.48.96
+      MYSQL_HOST: mariadb
       MYSQL_PORT: "3306"
       # LinOTP httpd admin password
       OTPPASSWD: admin
