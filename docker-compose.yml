@@ -1,0 +1,67 @@
+version: '3'
+services:
+  linotp:
+    image: linotp:latest
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: linotp
+    hostname: linotp
+    restart: always
+    networks:
+      - linotp
+    ports:
+      - "443:443"
+      - "1812:1812/udp"
+      - "1813:1813/udp"
+      #- "5001:5001"
+    environment: 
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: "1qaz2wsx"
+      MYSQL_DATABASE: LinOTP2
+      MYSQL_USER: linotp2
+      MYSQL_PASSWORD: "1qaz2wsx"
+      MYSQL_HOST: 10.152.48.96
+      MYSQL_PORT: "3306"
+      # LinOTP httpd admin password
+      OTPPASSWD: admin
+      # Radius Setting
+      RADIUS_REALM_OU: k8sldap
+      RADIUS_ADCONN_NET1: 0.0.0.0/0
+      RADIUS_ADCONN_NET2: ''
+      RADIUS_ADCONN_SECRET: Core3366
+    privileged: true
+    volumes:
+      - ./data/httpdLog:/var/log/httpd
+      - ./data/linotpLog:/var/log/linotp
+    depends_on:
+      - mariadb
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    hostname: mariadb
+    privileged: true
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "1qaz2wsx"
+    volumes:
+      - ./data/db:/var/lib/mysql
+    networks:
+      - linotp
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+networks:
+  linotp:
+    driver: bridge
