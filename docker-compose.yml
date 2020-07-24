@@ -33,6 +33,7 @@ services:
     volumes:
       - ./data/httpdLog:/var/log/httpd
       - ./data/linotpLog:/var/log/linotp
+      - ./data/manage:/etc/linotp2/data/templates/manage
     depends_on:
       - mariadb
     logging:
