@@ -30,7 +30,7 @@ services:
       RADIUS_ADCONN_NET1: 0.0.0.0/0
       RADIUS_ADCONN_NET2: ''
       RADIUS_ADCONN_SECRET: Core3366
-    privileged: true
+    #privileged: true
     volumes:
       - ./data/httpdLog:/var/log/httpd
       - ./data/linotpLog:/var/log/linotp
@@ -46,7 +46,7 @@ services:
     image: mariadb:latest
     container_name: mariadb
     hostname: mariadb
-    privileged: true
+    #privileged: true
     restart: always
     ports:
       - "3306:3306"
