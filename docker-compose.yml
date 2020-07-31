@@ -34,7 +34,7 @@ services:
       - ./data/httpdLog:/var/log/httpd
       - ./data/linotpLog:/var/log/linotp
       # cp linotp config
-      # docker cp linotp:/etc/linotp2/encKey ./data/conf/
+      # mkdir -p data/conf && docker cp linotp:/etc/linotp2/encKey ./data/conf/
       #- ./data/conf/encKey:/etc/linotp2/encKey
     depends_on:
       - mariadb
