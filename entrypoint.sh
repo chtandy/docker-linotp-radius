@@ -177,4 +177,4 @@ chown -R radiusd.radiusd /var/run/radiusd && /usr/sbin/radiusd -C
 /usr/sbin/radiusd -d /etc/raddb & 
 
 # deamon
-while test -n $(ps -ef|grep 'wsgi:linotp'|grep -v grep|awk '{print $1}'); do sleep 60; done
+while test ! -z $(ps -ef|grep 'wsgi:linotp'|grep -v grep|awk '{print $1}'); do sleep 60; done
