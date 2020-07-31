@@ -1,17 +1,12 @@
 #!/bin/bash
-# 替換 /etc/linotp2/linotp.ini 關於db的設定值
-if [ -n $MYSQL_DATABASE ] && [ -n $MYSQL_USER ] && [ -n $MYSQL_PASSWORD ] && [ -n $MYSQL_HOST ]; then
-sed -i "s|sqlalchemy.url =.*|sqlalchemy.url = mysql://$MYSQL_USER:$MYSQL_PASSWORD@$MYSQL_HOST/$MYSQL_DATABASE|" /etc/linotp2/linotp.ini
-fi
-
 
 #  create the db encryption key "linotp-create-enckey -f /etc/linotp2/linotp.ini"
 #dd if=/dev/urandom of=/etc/linotp2/encKey bs=1 count=96
-linotp-create-enckey -f /etc/linotp2/linotp.ini
+#linotp-create-enckey -f /etc/linotp2/linotp.ini
 
 nc -zv ${MYSQL_HOST} 3306
 until [ $? -eq 0 ]
-do 
+do
     sleep 10
     nc -zv ${MYSQL_HOST} 3306
 done
@@ -24,6 +19,16 @@ if [ -z $CheckLinotpdb ]; then
     mysql -u ${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} -h ${MYSQL_HOST} -P ${MYSQL_PORT} -e "flush privileges;"
     paster setup-app /etc/linotp2/linotp.ini
 fi
+
+# 替換 /etc/linotp2/linotp.ini 關於db的設定值
+if [ -n $MYSQL_DATABASE ] && [ -n $MYSQL_USER ] && [ -n $MYSQL_PASSWORD ] && [ -n $MYSQL_HOST ]; then
+   sed -i "s|sqlalchemy.url =.*|sqlalchemy.url = mysql://$MYSQL_USER:$MYSQL_PASSWORD@$MYSQL_HOST/$MYSQL_DATABASE|" /etc/linotp2/linotp.ini
+fi
+
+if [ ! -f /etc/linotp2/encKey ]; then
+  linotp-create-enckey -f /etc/linotp2/linotp.ini
+fi
+
 
 # set web login user/password
 REALM="LinOTP2 admin area"
@@ -173,8 +178,8 @@ ln -s /etc/raddb/sites-available/linotp /etc/raddb/sites-enabled/linotp
 /usr/sbin/httpd $OPTIONS -DFOREGROUND &
 
 # start radius service
-chown -R radiusd.radiusd /var/run/radiusd && /usr/sbin/radiusd -C 
-/usr/sbin/radiusd -d /etc/raddb & 
+chown -R radiusd.radiusd /var/run/radiusd && /usr/sbin/radiusd -C
+/usr/sbin/radiusd -d /etc/raddb &
 
 # deamon
 while test ! -z $(ps -ef|grep 'wsgi:linotp'|grep -v grep|awk '{print $1}'); do sleep 60; done
