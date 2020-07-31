@@ -1,10 +1,10 @@
 #!/bin/bash
 # test DB connect
-nc -zv ${MYSQL_HOST} 3306
+nc -zv ${MYSQL_HOST} ${MYSQL_PORT}
 until [ $? -eq 0 ]
 do
     sleep 10
-    nc -zv ${MYSQL_HOST} 3306
+    nc -zv ${MYSQL_HOST} ${MYSQL_PORT}
 done
 
 # create the database tables
