@@ -1,9 +1,5 @@
 #!/bin/bash
-
-#  create the db encryption key "linotp-create-enckey -f /etc/linotp2/linotp.ini"
-#dd if=/dev/urandom of=/etc/linotp2/encKey bs=1 count=96
-#linotp-create-enckey -f /etc/linotp2/linotp.ini
-
+# test DB connect
 nc -zv ${MYSQL_HOST} 3306
 until [ $? -eq 0 ]
 do
