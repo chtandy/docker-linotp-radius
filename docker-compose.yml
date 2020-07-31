@@ -15,7 +15,7 @@ services:
       - "1812:1812/udp"
       - "1813:1813/udp"
       #- "5001:5001"
-    environment: 
+    environment:
       MYSQL_ROOT_USER: root
       MYSQL_ROOT_PASSWORD: "1qaz2wsx"
       MYSQL_DATABASE: LinOTP2
@@ -33,7 +33,9 @@ services:
     volumes:
       - ./data/httpdLog:/var/log/httpd
       - ./data/linotpLog:/var/log/linotp
-      - ./data/manage:/etc/linotp2/data/templates/manage
+      # cp linotp config
+      # docker cp linotp:/etc/linotp2/encKey ./data/conf/
+      - ./data/conf/encKey:/etc/linotp2/encKey
     depends_on:
       - mariadb
     logging:
