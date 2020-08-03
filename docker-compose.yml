@@ -2,6 +2,7 @@
 ## 1 mkdir -p data/conf
 ## 2 docker cp linotp:/etc/linotp2/encKey ./data/conf/
 ## 3 unmark #- ./data/conf/encKey:/etc/linotp2/encKey
+## 4 docker-compose restart
 version: '3'
 services:
   linotp:
