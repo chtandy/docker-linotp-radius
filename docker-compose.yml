@@ -1,3 +1,7 @@
+## 第一次使用,須將db secret key 複製出來
+## 1 mkdir -p data/conf
+## 2 docker cp linotp:/etc/linotp2/encKey ./data/conf/
+## 3 unmark #- ./data/conf/encKey:/etc/linotp2/encKey
 version: '3'
 services:
   linotp:
@@ -33,8 +37,6 @@ services:
     volumes:
       - ./data/httpdLog:/var/log/httpd
       - ./data/linotpLog:/var/log/linotp
-      # cp linotp config
-      # mkdir -p data/conf && docker cp linotp:/etc/linotp2/encKey ./data/conf/
       #- ./data/conf/encKey:/etc/linotp2/encKey
     depends_on:
       - mariadb
