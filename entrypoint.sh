@@ -18,7 +18,7 @@ fi
 
 # 替換 /etc/linotp2/linotp.ini 關於db的設定值
 if [ -n $MYSQL_DATABASE ] && [ -n $MYSQL_USER ] && [ -n $MYSQL_PASSWORD ] && [ -n $MYSQL_HOST ]; then
-   sed -i "s|sqlalchemy.url =.*|sqlalchemy.url = mysql://$MYSQL_USER:$MYSQL_PASSWORD@$MYSQL_HOST:$MYSQL_PORT/$MYSQL_DATABASE|" /etc/linotp2/linotp.ini
+   sed -i "s|sqlalchemy.url =.*|sqlalchemy.url = mysql://$MYSQL_USER:$MYSQL_PASSWORD@$MYSQL_HOST/$MYSQL_DATABASE|" /etc/linotp2/linotp.ini
 fi
 
 if [ ! -f /etc/linotp2/encKey ]; then
