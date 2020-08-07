@@ -3,7 +3,7 @@
 nc -zv ${MYSQL_HOST} ${MYSQL_PORT}
 until [ $? -eq 0 ]
 do
-    sleep 10
+    sleep 5
     nc -zv ${MYSQL_HOST} ${MYSQL_PORT}
 done
 
