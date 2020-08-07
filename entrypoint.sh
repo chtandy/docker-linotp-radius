@@ -1,5 +1,6 @@
 #!/bin/bash
 # test DB connect
+export DBSTATUS=no_init
 nc -zv ${MYSQL_HOST} ${MYSQL_PORT}
 until [ $? -eq 0 ]
 do
@@ -12,13 +13,16 @@ if [ -z $CheckLinotpdb ]; then
     mysql -u ${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} -h ${MYSQL_HOST} -P ${MYSQL_PORT} -e "create database ${MYSQL_DATABASE};"
     mysql -u ${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} -h ${MYSQL_HOST} -P ${MYSQL_PORT} -e "grant all privileges on ${MYSQL_DATABASE}.* to '${MYSQL_USER}'@'%' identified by '${MYSQL_PASSWORD}';"
     mysql -u ${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} -h ${MYSQL_HOST} -P ${MYSQL_PORT} -e "flush privileges;"
-    sed -i "s|sqlalchemy.url =.*|sqlalchemy.url = mysql://$MYSQL_USER:$MYSQL_PASSWORD@$MYSQL_HOST/$MYSQL_DATABASE|" /etc/linotp2/linotp.ini
+    sed -i "s|sqlalchemy.url =.*|sqlalchemy.url = mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}|" /etc/linotp2/linotp.ini
     paster setup-app /etc/linotp2/linotp.ini
+    export DBSTATUS=init
 fi
 
 # 替換 /etc/linotp2/linotp.ini 關於db的設定值
-if [ -n ${MYSQL_DATABASE} ] && [ -n ${MYSQL_USER} ] && [ -n ${MYSQL_PASSWORD} ] && [ -n ${MYSQL_HOST} ]; then
-   sed -i "s|sqlalchemy.url =.*|sqlalchemy.url = mysql://$i{MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}|" /etc/linotp2/linotp.ini
+if [ -n ${MYSQL_DATABASE} ] && [ -n ${MYSQL_USER} ] && [ -n ${MYSQL_PASSWORD} ] && [ -n ${MYSQL_HOST} ] && [ -n ${MYSQL_PORT} ]; then
+	if [ $DBSTATUS == 'no_init' ]; then
+            sed -i "s|sqlalchemy.url =.*|sqlalchemy.url = mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}|" /etc/linotp2/linotp.ini
+        fi
 fi
 
 if [ ! -f /etc/linotp2/encKey ] && [ ! -f /data/encKey ]; then

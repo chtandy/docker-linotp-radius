@@ -1,8 +1,3 @@
-## 第一次使用,須將db secret key 複製出來
-## 1 mkdir -p data/conf
-## 2 docker cp linotp:/etc/linotp2/encKey ./data/conf/
-## 3 unmark #- ./data/conf/encKey:/etc/linotp2/encKey
-## 4 docker-compose restart
 version: '3'
 services:
   linotp:
@@ -13,8 +8,6 @@ services:
     container_name: linotp
     hostname: linotp
     restart: always
-    tty: true
-    command: /bin/bash
     networks:
       - linotp
     ports:
