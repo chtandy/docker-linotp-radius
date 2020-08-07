@@ -13,6 +13,8 @@ services:
     container_name: linotp
     hostname: linotp
     restart: always
+    tty: true
+    command: /bin/bash
     networks:
       - linotp
     ports:
@@ -27,7 +29,7 @@ services:
       MYSQL_USER: linotp2
       MYSQL_PASSWORD: "1qaz2wsx"
       MYSQL_HOST: mariadb
-      MYSQL_PORT: "3306"
+      MYSQL_PORT: '3306'
       # LinOTP httpd admin password
       OTPPASSWD: admin
       # Radius Setting
@@ -38,7 +40,7 @@ services:
     volumes:
       - ./data/httpdLog:/var/log/httpd
       - ./data/linotpLog:/var/log/linotp
-      #- ./data/conf/encKey:/etc/linotp2/encKey
+      - ./data/conf:/data
     depends_on:
       - mariadb
     logging:
