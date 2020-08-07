@@ -6,7 +6,7 @@ do
     sleep 5
     nc -zv ${MYSQL_HOST} ${MYSQL_PORT}
 done
-
+sleep 5
 # create the database tables
 CheckLinotpdb=$(mysql -u ${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} -h ${MYSQL_HOST} -P ${MYSQL_PORT} -e 'show databases;' |grep ${MYSQL_DATABASE})
 if [ -z $CheckLinotpdb ]; then
