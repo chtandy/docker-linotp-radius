@@ -31,8 +31,6 @@ services:
       RADIUS_ADCONN_NET2: ''
       RADIUS_ADCONN_SECRET: Core3366
     volumes:
-      - ./data/httpdLog:/var/log/httpd
-      - ./data/linotpLog:/var/log/linotp
       - ./data/conf:/data
     depends_on:
       - mariadb
