@@ -187,11 +187,5 @@ ln -s /etc/raddb/sites-available/linotp /etc/raddb/sites-enabled/linotp
 chown -R radiusd.radiusd /var/run/radiusd && /usr/sbin/radiusd -C
 /usr/sbin/radiusd -d /etc/raddb &
 
-# print log to stdout
-#ln -sf /proc/self/fd/1 /var/log/httpd/access_log
-#ln -sf /proc/self/fd/1 /var/log/httpd/ssl_access_log
-#ln -sf /proc/self/fd/2 /var/log/httpd/error_log
-#ln -sf /proc/self/fd/1 /var/log/linotp/linotp.log
-
 # deamon
 while test ! -z $(ps -ef|grep 'wsgi:linotp'|grep -v grep|awk '{print $1}'); do sleep 60; done
