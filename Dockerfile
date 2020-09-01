@@ -31,4 +31,8 @@ RUN  mv /etc/raddb/clients.conf /etc/raddb/clients.conf.back \
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+# print httpd log 
+RUN ln -sf /proc/self/fd/1 /var/log/httpd/access_log \
+  && ln -sf /proc/self/fd/2 /var/log/httpd/error_log
+
 CMD ["/entrypoint.sh"]
