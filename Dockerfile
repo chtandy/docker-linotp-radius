@@ -33,6 +33,7 @@ RUN chmod +x /entrypoint.sh
 
 # print httpd log 
 RUN ln -sf /proc/self/fd/1 /var/log/httpd/access_log \
-  && ln -sf /proc/self/fd/2 /var/log/httpd/error_log
+  && ln -sf /proc/self/fd/2 /var/log/httpd/error_log \
+  && ln -sf /proc/self/fd/1 /var/log/httpd/ssl_access_log
 
 CMD ["/entrypoint.sh"]
