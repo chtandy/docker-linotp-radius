@@ -62,7 +62,17 @@ paster setup-app /etc/linotp2/linotp.ini
 ```
 - 備註：
   - `paster setup-app /etc/linotp2/linotp.ini`會針對`/etc/linotp2/linotp.ini` 檔案中的DB訊息產生一隻檔案`encKey`
-  - 官方文件表示,若遺失這把key，會導致LinOTP重產一把,且LinOTP的配置無法使用,所以要備份
+  - 官方設定檔文件表示,若遺失這把key，會導致LinOTP重產一把,且LinOTP的配置無法使用,所以要備份
+  ```
+  ## Encrytion key:
+  ## --------------
+  ## The encryption key is used to encrypt the token seeds before storing them
+  ## in the Token database.
+  ##
+  ## Caution: Be careful with this key - losing it, will render your token and
+  ## LinOTP configuration useless
+  linotpSecretFile = %(here)s/encKey
+  ```
 
 
 ### 設定linopt admin 密碼
