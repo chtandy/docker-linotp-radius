@@ -37,8 +37,8 @@ yum install LinOTP_apache -y
 ```
 mysql -u root -p # DB於本地端
 mysql -u root -p -h {DB IP} 
-create database L2demo;
-grant all privileges on L2demo.* to 'linotp'@'%' identified by 'mySecret';
+create database LinOTP;
+grant all privileges on LinOTP.* to 'linotp'@'%' identified by 'mySecret';
 flush privileges;
 quit;
 ```
