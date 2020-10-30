@@ -470,7 +470,7 @@ Reload privilege tables now? [Y/n] y
   ```
 
 
-### 補充 可用網頁驗證Radius 服務正不正常
+### 補充 可用網頁驗證LinOTP服務正不正常
 ```
 https://[IPAddressofRADIUS]/validate/check?user=USERNAME&pass=PINOTP
 ```
