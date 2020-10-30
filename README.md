@@ -468,3 +468,21 @@ Reload privilege tables now? [Y/n] y
   Received Access-Accept Id 19 from 127.0.0.1:1812 to 0.0.0.0:0 length 43
 	Reply-Message = "LinOTP access granted"
   ```
+
+
+### 補充 可用網頁驗證Radius 服務正不正常
+```
+https://[IPAddressofRADIUS]/validate/check?user=USERNAME&pass=PINOTP
+```
+成功畫面
+```
+{
+   "version": "LinOTP 2.10.1", 
+   "jsonrpc": "2.0802", 
+   "result": {
+      "status": true, 
+      "value": true
+   }, 
+   "id": 0
+}
+```
