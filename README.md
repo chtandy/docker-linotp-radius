@@ -51,7 +51,7 @@ cp /etc/linotp2/linotp.ini.example /etc/linotp2/linotp.ini
 
 # 修改/etc/linotp2/linotp.ini中的
 `sqlalchemy.url = mysql://linotp2:1234@localhost/LinOTP2` 替換為上述設定的
-`sqlalchemy.url = mysql://linotp:mySecret@localhost/L2demo`
+`sqlalchemy.url = mysql://linotp:mySecret@localhost/LinOTP`
 
 # 新增DB加密金鑰,以下兩個擇一即可
 dd if=/dev/urandom of=/etc/linotp2/encKey bs=1 count=96
