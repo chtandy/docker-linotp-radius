@@ -468,6 +468,7 @@ Reload privilege tables now? [Y/n] y
 - 驗證Radius驗證OTP
   ```
   radtest {username} {token-from-google-authenticator} localhost 0 SECRET
+  radtest 帳號 密碼 伺服器IP 0 金鑰字串
   ```
   -  成功訊息
   ```
