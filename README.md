@@ -504,7 +504,19 @@ https://[IPAddressofRADIUS]/validate/check?user=USERNAME&pass=PINOTP
 
 
 
+### Logs
+```
+# Apache logs
+/var/log/httpd/access_log
+/var/log/httpd/error_log
 
+# LinOTP logs
+/var/log/linotp/linotp.log
+
+
+# Radius logs
+/var/log/radius/radius.log
+```
 
 
 
