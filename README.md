@@ -272,6 +272,20 @@ client adconnector {
         secret  = 'Core3366'
 }
 ```
+```
+client localhost {
+        ipaddr  = 127.0.0.1
+        netmask = 32
+        secret  = 'SECRET'
+}
+
+client adconnector {
+        ipaddr  = 0.0.0.0
+        netmask = 0
+        secret  = 'Core3366'
+}
+```
+
 - 下載linotp perl module
 ```
 git clone https://github.com/LinOTP/linotp-auth-freeradius-perl.git /usr/share/linotp/linotp-auth-freeradius-perl
