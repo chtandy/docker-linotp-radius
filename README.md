@@ -53,7 +53,7 @@ cp /etc/linotp2/linotp.ini.example /etc/linotp2/linotp.ini
 `sqlalchemy.url = mysql://linotp2:1234@localhost/LinOTP2` 替換為上述設定的
 `sqlalchemy.url = mysql://linotp:mySecret@localhost/LinOTP`
 
-# 新增DB加密金鑰,以下兩個擇一即可
+# 新增DB加密金鑰,以下兩個擇一即可 ,若是環境移植，則須將/etc/linotp2/enckey 備份出來，否則mfa token 都會無效
 dd if=/dev/urandom of=/etc/linotp2/encKey bs=1 count=96
 linotp-create-enckey -f /etc/linotp2/linotp.ini
 
