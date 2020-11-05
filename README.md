@@ -57,7 +57,7 @@ cp /etc/linotp2/linotp.ini.example /etc/linotp2/linotp.ini
 dd if=/dev/urandom of=/etc/linotp2/encKey bs=1 count=96
 linotp-create-enckey -f /etc/linotp2/linotp.ini
 
-# create the linotp database tables
+# create the linotp database tables !!注意,若不是新建的環境，切記不要執行
 paster setup-app /etc/linotp2/linotp.ini
 ```
 - 備註：
