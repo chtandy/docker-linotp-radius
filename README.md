@@ -572,3 +572,9 @@ time = * * * * * *;
 action = "enrollTOTP, reset, resync, setOTPPIN, disable"
 scope = selfservice
 ```
+
+### 注意事項
+- migrate LinOTP service 要特別注意，/etc/linotp2/enckey 要備份，不然mfa Token 都會失效
+- 當LinOTP的DB資料匯出到其他環境，/etc/linotp2/enckey 檔案也要一併備份，LinOTO透過這把Key 作加解密
+
+
