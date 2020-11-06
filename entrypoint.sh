@@ -27,6 +27,7 @@ fi
 
 if [ ! -f /etc/linotp2/encKey ] && [ ! -f /data/encKey ]; then
   linotp-create-enckey -f /etc/linotp2/linotp.ini
+  chown linotp:apache /etc/linotp2/encKey
   mv /etc/linotp2/encKey /data/encKey
   ln -sf /data/encKey /etc/linotp2/encKey
 elif [ ! -f /etc/linotp2/encKey ] && [ -f /data/encKey ]; then
