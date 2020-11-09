@@ -188,13 +188,5 @@ ln -s /etc/raddb/sites-available/linotp /etc/raddb/sites-enabled/linotp
 chown -R radiusd.radiusd /var/run/radiusd && /usr/sbin/radiusd -C
 /usr/sbin/radiusd -d /etc/raddb &
 
-# 若有問題，可以移除以下
-usermod -aG apache linotp
-usermod -aG apache radiusd
-chmod 777 /proc/self/fd/1
-ln -sf /proc/self/fd/1 /var/log/linotp/linotp.log
-ln -sf /proc/self/fd/1 /var/log/radius/radius.log
-
-
 # deamon
 while test ! -z $(ps -ef|grep 'wsgi:linotp'|grep -v grep|awk '{print $1}'); do sleep 60; done
