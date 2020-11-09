@@ -1,3 +1,4 @@
+# docker-compose --compatibility up -d
 version: '3'
 services:
   linotp:
@@ -14,7 +15,6 @@ services:
       - "443:443"
       - "1812:1812/udp"
       - "1813:1813/udp"
-      #- "5001:5001"
     environment:
       MYSQL_ROOT_USER: root
       MYSQL_ROOT_PASSWORD: "1qaz2wsx"
@@ -34,6 +34,11 @@ services:
       - ./data/conf:/data
     depends_on:
       - mariadb
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 500M
     logging:
       driver: "json-file"
       options:
@@ -53,6 +58,11 @@ services:
       - ./data/db:/var/lib/mysql
     networks:
       - linotp
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
     logging:
       driver: "json-file"
       options:
