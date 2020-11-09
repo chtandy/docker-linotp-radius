@@ -188,7 +188,7 @@ ln -s /etc/raddb/sites-available/linotp /etc/raddb/sites-enabled/linotp
 chown -R radiusd.radiusd /var/run/radiusd && /usr/sbin/radiusd -C
 /usr/sbin/radiusd -d /etc/raddb &
 
-# 若有問題，可以移除以下
+# 若有問題，可以移除以下，主要是要讓Log 輸出到stdout
 usermod -aG apache linotp
 usermod -aG apache radiusd
 chmod 777 /proc/self/fd/1
