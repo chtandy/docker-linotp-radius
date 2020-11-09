@@ -188,5 +188,8 @@ ln -s /etc/raddb/sites-available/linotp /etc/raddb/sites-enabled/linotp
 chown -R radiusd.radiusd /var/run/radiusd && /usr/sbin/radiusd -C
 /usr/sbin/radiusd -d /etc/raddb &
 
+tail -f /var/log/linotp/linotp.log > /dev/null 2>&1 & 
+tail -f /var/log/radius/radius.log > /dev/null 2>&1 &
+
 # deamon
 while test ! -z $(ps -ef|grep 'wsgi:linotp'|grep -v grep|awk '{print $1}'); do sleep 60; done
