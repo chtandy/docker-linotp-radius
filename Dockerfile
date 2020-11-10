@@ -1,7 +1,8 @@
 FROM centos:7
 MAINTAINER cht.andy@gmail.com 
 # LinOTP
-RUN yum localinstall http://linotp.org/rpm/el7/linotp/x86_64/Packages/LinOTP_repos-1.1-1.el7.x86_64.rpm -y \
+RUN set -eux \
+  && yum localinstall http://linotp.org/rpm/el7/linotp/x86_64/Packages/LinOTP_repos-1.1-1.el7.x86_64.rpm -y \
   && yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
   && yum update -y \
   && yum install nc vim -y \
@@ -17,7 +18,8 @@ RUN cp /etc/linotp2/linotp.ini.example /etc/linotp2/linotp.ini \
   && mv /etc/httpd/conf.d/ssl.conf /etc/httpd/conf.d/ssl.conf.bak
 
 # FreeRadius
-RUN yum install git cpanminus freeradius freeradius-perl freeradius-utils perl-App-cpanminus perl-LWP-Protocol-https perl-Try-Tiny -y \
+RUN set -eux \
+  && yum install git cpanminus freeradius freeradius-perl freeradius-utils perl-App-cpanminus perl-LWP-Protocol-https perl-Try-Tiny -y \
   && cpanm Config::File \
   && rm -rf var/cache/yum/ \
   && yum repolist
