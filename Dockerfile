@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos:7.8.2003
 MAINTAINER cht.andy@gmail.com 
 # LinOTP
 RUN set -eux \
