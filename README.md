@@ -582,3 +582,21 @@ scope = selfservice
   /etc/linotp2/linotp.ini      640 linotp root
   ```
 
+
+
+### /etc/yum.repos.d/linotp.repo
+```
+[linotp]
+name=KeyIdentity LinOTP Packages for Enterprise Linux 7 - $basearch
+baseurl=http://linotp.org/rpm/el7/linotp/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-LINOTP-7
+
+[linotp-dependencies]
+name=KeyIdentity LinOTP Packages required for Enterprise Linux 7
+baseurl=http://linotp.org/rpm/el7/dependencies/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-LINOTP-7
+```
