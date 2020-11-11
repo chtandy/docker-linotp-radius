@@ -14,6 +14,8 @@ yum localinstall http://linotp.org/rpm/el7/linotp/x86_64/Packages/LinOTP_repos-1
 
 # 啟用 EPEL 儲存庫
 yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -y
+or 
+yum install epel-release.noarch -y
 
 yum update -y
 # MariaDB
