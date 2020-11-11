@@ -7,7 +7,7 @@
 
 
 ### 安裝LinOTP 和DB
-- 安裝流程
+- 安裝流程 [LinOTP 官方](https://linotp.org/doc/latest/part-installation/server-installation/rpm_install.html)  
 ```
 # 取得LinOTP repo
 yum localinstall http://linotp.org/rpm/el7/linotp/x86_64/Packages/LinOTP_repos-1.1-1.el7.x86_64.rpm -y
