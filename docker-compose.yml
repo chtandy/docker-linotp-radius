@@ -1,5 +1,12 @@
 version: '3'
 services:
+  init:
+    image: busybox
+    command: "chown 999:999 /data"
+    volumes:
+      - ./data/db:/data
+    restart: 'no'
+
   linotp:
     image: linotp:latest
     build:
@@ -8,8 +15,6 @@ services:
     container_name: linotp
     hostname: linotp
     restart: always
-    networks:
-      - linotp
     ports:
       - "443:443"
       - "1812:1812/udp"
@@ -40,7 +45,7 @@ services:
         max-file: "5"
 
   mariadb:
-    image: mariadb:latest
+    image: mariadb:10.5.7
     container_name: mariadb
     hostname: mariadb
     restart: always
@@ -50,14 +55,11 @@ services:
       MYSQL_ROOT_PASSWORD: "1qaz2wsx"
     volumes:
       - ./data/db:/var/lib/mysql
-    networks:
-      - linotp
+    depends_on:
+      - init
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "5"
 
-networks:
-  linotp:
-    driver: bridge
